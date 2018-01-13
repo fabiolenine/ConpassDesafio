@@ -1,0 +1,28 @@
+{
+  "name": "wsconpass",
+  "version": "0.0.1",
+  "description": "Desafio Conpass para vaga de BackEnd",
+  "main": "wsconpass.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiolenine/ConpassDesafio.git"
+  },
+  "author": "Fabio Lenine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabiolenine/ConpassDesafio/issues"
+  },
+  "homepage": "https://github.com/fabiolenine/ConpassDesafio#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
+  }
+}
