@@ -27,6 +27,6 @@ app.use(bodyParser.urlencoded({extended: true}));	// for parsing application/x-w
 app.disable('x-powered-by');
 
 // Routes
-require('./routes/dashboard.js')(app, crud);
+require('./routes/dashboard')(app, crud);
 
 module.exports = app;
