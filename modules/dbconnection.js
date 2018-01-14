@@ -2,8 +2,8 @@
 
 module.exports = function(mongoose, config){
 
-  const dbPath    = "mongodb://" +   config.USER     + ":" +
-                                     config.PASS     + "@"+
+  const dbPath    = "mongodb://" +   //config.USER     + ":" +
+                                     //config.PASS     + "@"+
                                      config.HOST     + ":"+
                                      config.PORT     + "/"+
                                      config.DATABASE;
