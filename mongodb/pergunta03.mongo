@@ -1,0 +1,64 @@
+db.activities.aggregate(
+
+	// Pipeline
+	[
+		// Stage 1
+		{
+			$match: {
+			 type: "flow"
+			}
+		},
+
+		// Stage 2
+		{
+			$group: {
+			    _id: {flow_id: "$flow",
+			    status: "$status"},
+			    quant: { $sum: 1}
+			}
+		},
+
+		// Stage 3
+		{
+			$project: {
+			    // specifications
+			    _id: 0,
+			    flow_id: "$_id.flow_id",
+			    status: "$_id.status",
+			    quant: 1
+			}
+		},
+
+		// Stage 4
+		{
+			$lookup: {
+			    "from" : "flows",
+			    "localField" : "flow_id",
+			    "foreignField" : "_id",
+			    "as" : "flow_data"
+			}
+		},
+
+		// Stage 5
+		{
+			$project: {
+			    // specifications
+			    flow_id: 1,
+			    status: 1,
+			    quant: 1,
+			    flow_title: { $arrayElemAt: ["$flow_data.title",0]}
+			}
+		},
+
+		// Stage 6
+		{
+			$out: "q3finals"
+		},
+	],
+
+	// Options
+	{
+		allowDiskUse: true
+	}
+
+);

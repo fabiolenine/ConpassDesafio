@@ -1,0 +1,92 @@
+db.activities.aggregate(
+
+	// Pipeline
+	[
+		// Stage 1
+		{
+			$match: {
+			"type": "step",
+			"status": "cancel"
+			}
+		},
+
+		// Stage 2
+		{
+			$group: {
+			_id: {step: "$step"},
+			quant: {$sum: 1}
+			}
+		},
+
+		// Stage 3
+		{
+			$project: {
+			    // specifications
+			    _id: 0,
+			    quant: 1,
+			    "step": "$_id.step"
+			}
+		},
+
+		// Stage 4
+		{
+			$lookup: {
+			    "from" : "steps",
+			    "localField" : "step",
+			    "foreignField" : "_id",
+			    "as" : "step_data"
+			}
+		},
+
+		// Stage 5
+		{
+			$project: {
+			    // specifications
+			    quant: 1,
+			    step: 1,
+			    title_step: { $arrayElemAt: ["$step_data.title",0]},
+			    flow: { $arrayElemAt: ["$step_data.flow",0]}
+			}
+		},
+
+		// Stage 6
+		{
+			$lookup: {
+			    "from" : "flows",
+			    "localField" : "flow",
+			    "foreignField" : "_id",
+			    "as" : "flow_data"
+			}
+		},
+
+		// Stage 7
+		{
+			$project: {
+			    // specifications
+			    quant: 1,
+			    step: 1,
+			    title_step: 1,
+			    flow: 1,
+			    title_flow: { $arrayElemAt: ["$flow_data.title",0]}
+			}
+		},
+
+		// Stage 8
+		{
+			$sort: {
+			quant: -1
+			}
+		},
+
+		// Stage 9
+		{
+			$out: "q1final"
+		},
+	],
+
+	// Options
+	{
+		allowDiskUse: true
+	}
+
+);

@@ -1,0 +1,61 @@
+db.activities.aggregate(
+
+	// Pipeline
+	[
+		// Stage 1
+		{
+			$match: {
+			type: "flow",
+			status: "end"
+			}
+		},
+
+		// Stage 2
+		{
+			$group: {
+			_id: "$user", flows: { $addToSet: "$flow"}
+			}
+		},
+
+		// Stage 3
+		{
+			$lookup: {
+			    "from" : "users",
+			    "localField" : "_id",
+			    "foreignField" : "_id",
+			    "as" : "usuario"
+			}
+		},
+
+		// Stage 4
+		{
+			$match: {
+			 usuario: {$ne: []}
+			}
+		},
+
+		// Stage 5
+		{
+			$project: {
+			    // specifications
+			    _id: 0,
+			    user_id: { $arrayElemAt: ["$usuario._id",0]},
+			    user_name: { $arrayElemAt: ["$usuario.name",0]},
+			    user_email: { $arrayElemAt: ["$usuario.email",0]},
+			    user_alias: { $arrayElemAt: ["$usuario.alias",0]},
+			    flows: 1
+			}
+		},
+
+		// Stage 6
+		{
+			$out: "q2finals"
+		},
+	],
+
+	// Options
+	{
+		allowDiskUse: true
+	}
+
+);
