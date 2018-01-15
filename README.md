@@ -6,9 +6,8 @@
 Passo a passo para a instalação do zero dos servidores e aplicação:
 
 [1. Instalação do MongoDB 3.4;](/instalandomongodb.md)
-[]()
-
-
+[2. Instalação da aplicação;](/instalandoaplicacao.md)
+[3. Iniciar o WebService;](/iniciarwebservice.md)
 
 
 ## Vamos ao Desafio!

@@ -40,3 +40,19 @@ Para que a instalação ocorra sem problemas, são necessários as seguintes **c
 07 - Acesse o MongoDB e execute os seguintes comandos:
 
 `mongo`
+
+08 - Para ativar todas as alterações reinicie o serviço do MongoDB com o comando a seguir:
+
+`sudo service mongod stop`
+
+`sudo mongod --fork --auth --quiet --config /etc/mongod.conf`
+
+09 - Vamos editar o crontab para que o MongoDB retorne caso a instância seja reiniciada, execute o comendo abaixo:
+
+`sudo crontab -e`
+
+ 10 - Adicione esta linha ao arquivo:
+
+`@reboot sudo mongod --fork --auth --quiet --config /etc/mongod.conf`
+
+**Parabéns, finalizamos a fase de instalação e configuração do banco de dados.**
