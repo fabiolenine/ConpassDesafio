@@ -24,7 +24,7 @@ if(process.env.NODE_ENV == 'dev') {
   app.use(morgan('combined'));
   let config = configDEV;
 } else if (process.env.NODE_ENV == 'test') {
-  let config = configTESTE;
+  let config = configTEST;
 }
 
 require('./modules/dbconnection')(mongoose, config);

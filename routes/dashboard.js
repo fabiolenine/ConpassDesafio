@@ -15,7 +15,7 @@ module.exports = function(app,dbcrud)
 
   app.get('/dashboard/v001/usersflowend', (req, res) => {
     dbcrud.usersflowend(function(err,done){
-      if (done) res.status(200).send(done);
+      if (done) res.json(done);
       else {
           res.send({'err': 'informação não encontrada.'});
       }

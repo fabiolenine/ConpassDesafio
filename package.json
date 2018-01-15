@@ -4,7 +4,7 @@
   "description": "Desafio Conpass para vaga de BackEnd",
   "main": "wsconpass.js",
   "scripts": {
-    "start": "SET NODE_ENV=dev && node wsconpass.js",
+    "start": "set NODE_ENV=dev && node wsconpass.js",
     "test": "mocha --timeout 10000"
   },
   "repository": {
