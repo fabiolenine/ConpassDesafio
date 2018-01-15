@@ -1,7 +1,17 @@
 ![Conpass](http://conpass.io/imagens/elementos/logo-2.png)
+
 # Conpass - Desafio
 
-Vamos ao Desafio!
+
+Passo a passo para a instalação do zero dos servidores e aplicação:
+
+[1. Instalação do MongoDB 3.4;](/instalandomongodb.md)
+[]()
+
+
+
+
+## Vamos ao Desafio!
 
 Hoje, na Conpass, temos diversos clientes, e para este desafio, iremos pegar dois como base para o nosso experimento.
 
